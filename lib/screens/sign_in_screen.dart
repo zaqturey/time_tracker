@@ -13,7 +13,7 @@ class SignInScreen extends StatelessWidget {
     );
   }
 
-  Container _buildContainer() {
+  Widget _buildContainer() {
     return Container(
       color: Colors.yellow,
       child: Column(
