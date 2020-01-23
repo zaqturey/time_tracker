@@ -17,6 +17,7 @@ class SignInScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -25,12 +26,14 @@ class SignInScreen extends StatelessWidget {
               height: 100.0,
             ),
           ),
+          SizedBox(height: 8.0),
           Container(
             color: Colors.red,
             child: SizedBox(
               height: 100.0,
             ),
           ),
+          SizedBox(height: 8.0),
           Container(
             color: Colors.purple,
             child: SizedBox(
