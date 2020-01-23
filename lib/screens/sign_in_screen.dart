@@ -16,6 +16,7 @@ class SignInScreen extends StatelessWidget {
   Widget _buildContainer() {
     return Container(
       color: Colors.yellow,
+      padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
