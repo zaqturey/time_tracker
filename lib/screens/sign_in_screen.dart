@@ -9,31 +9,35 @@ class SignInScreen extends StatelessWidget {
         // 'elevation' is used to add shadow to the AppBar
         elevation: 4.0,
       ),
-      body: Container(
-        color: Colors.yellow,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              color: Colors.orange,
-              child: SizedBox(
-                height: 100.0,
-              ),
+      body: _buildContainer(),
+    );
+  }
+
+  Container _buildContainer() {
+    return Container(
+      color: Colors.yellow,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            color: Colors.orange,
+            child: SizedBox(
+              height: 100.0,
             ),
-            Container(
-              color: Colors.red,
-              child: SizedBox(
-                height: 100.0,
-              ),
+          ),
+          Container(
+            color: Colors.red,
+            child: SizedBox(
+              height: 100.0,
             ),
-            Container(
-              color: Colors.purple,
-              child: SizedBox(
-                height: 100.0,
-              ),
-            )
-          ],
-        ),
+          ),
+          Container(
+            color: Colors.purple,
+            child: SizedBox(
+              height: 100.0,
+            ),
+          )
+        ],
       ),
     );
   }
