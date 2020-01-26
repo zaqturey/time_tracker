@@ -10,6 +10,7 @@ class SignInScreen extends StatelessWidget {
         elevation: 4.0,
       ),
       body: _buildContainer(),
+      backgroundColor: Colors.grey[200],
     );
   }
 
@@ -38,7 +39,7 @@ class SignInScreen extends StatelessWidget {
               ),
             ),
             color: Colors.white,
-            onPressed: null,
+            onPressed: () {},
           ),
         ],
       ),
