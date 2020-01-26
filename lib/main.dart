@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:time_tracker_flutter_course/screens/sign_in_screen.dart';
+import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_screen.dart';
 
 void main() => runApp(MyApp());
 
