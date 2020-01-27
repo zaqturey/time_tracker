@@ -31,7 +31,18 @@ class SignInScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8.0),
-          CustomRaisedButton(),
+          CustomRaisedButton(
+            child: Text(
+              'Sign in with Google',
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 15.0,
+              ),
+            ),
+            color: Colors.white,
+            borderRadius: 8.0,
+            onPressed: () {},
+          ),
         ],
       ),
     );
