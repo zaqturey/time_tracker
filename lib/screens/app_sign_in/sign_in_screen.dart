@@ -30,7 +30,7 @@ class SignInScreen extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 8.0),
+          SizedBox(height: 48.0),
           SignInButton(
             text: 'Sign in with Google',
             textColor: Colors.black87,
