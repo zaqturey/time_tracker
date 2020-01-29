@@ -40,7 +40,8 @@ class SignInScreen extends StatelessWidget {
             onPressed: () {},
           ),
           SizedBox(height: 8.0),
-          SignInButton(
+          SocialSignInButton(
+            assetName: 'assets/images/facebook-logo.png',
             text: 'Sign in with Facebook',
             textColor: Colors.white,
             color: Color(0xFF334D92),
