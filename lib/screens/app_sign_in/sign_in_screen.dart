@@ -5,8 +5,12 @@ import 'package:time_tracker_flutter_course/screens/app_sign_in/social_sign_in_b
 
 class SignInScreen extends StatelessWidget {
   Future<void> _signInAnonymously() async {
-    final authResult = await FirebaseAuth.instance.signInAnonymously();
-    print('\n${authResult.user.uid}');
+    try {
+      final authResult = await FirebaseAuth.instance.signInAnonymously();
+      print('\n${authResult.user.uid}');
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
