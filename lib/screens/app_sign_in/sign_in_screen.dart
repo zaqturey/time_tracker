@@ -11,8 +11,8 @@ class SignInScreen extends StatelessWidget {
         // 'elevation' is used to add shadow to the AppBar
         elevation: 4.0,
       ),
-      body: _buildContainer(),
       backgroundColor: Colors.grey[200],
+      body: _buildContainer(),
     );
   }
 
