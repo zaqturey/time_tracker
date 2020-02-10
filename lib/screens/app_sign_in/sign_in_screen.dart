@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_button.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/social_sign_in_button.dart';
 
 class SignInScreen extends StatelessWidget {
+  Future<void> _signInAnonymously() async {
+    final authResult = await FirebaseAuth.instance.signInAnonymously();
+    print('\n${authResult.user.uid}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +71,9 @@ class SignInScreen extends StatelessWidget {
             text: 'Go anonymous',
             textColor: Colors.black,
             color: Colors.lime[300],
-            onPressed: () {},
+            // Note: Since 'onPressed' (callback) and '_signInAnonymously' (method) both accepts no arguments and returns no Value,
+            // it is allowed to use the below signature instead of using a closure syntax i.e.  "onPressed: () => _signInAnonymously()".
+            onPressed: _signInAnonymously,
           ),
         ],
       ),
