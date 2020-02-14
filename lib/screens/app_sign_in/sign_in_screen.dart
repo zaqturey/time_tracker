@@ -4,10 +4,19 @@ import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_button.d
 import 'package:time_tracker_flutter_course/screens/app_sign_in/social_sign_in_button.dart';
 
 class SignInScreen extends StatelessWidget {
+  // defining a parameterized Constructor that takes a 'Function' as a mandatory argument.
+  SignInScreen({@required this.onSignIn});
+
+  // As we want a Callback from this Screen to Inform the LandingScreen whenever
+  // a User has clicked/performed 'SignIn' anonymously, hence defining a custom Callback i.e. 'onSignIn'
+  // Below we r defining a 'Function Variable' that takes 'FirebaseUser' as an argument
+  final Function(FirebaseUser) onSignIn;
+
   Future<void> _signInAnonymously() async {
     try {
       final authResult = await FirebaseAuth.instance.signInAnonymously();
-      print('\n${authResult.user.uid}');
+      // calling the Callback after signing successfully
+      onSignIn(authResult.user);
     } catch (e) {
       print(e.toString());
     }
