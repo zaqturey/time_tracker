@@ -1,7 +1,20 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  HomeScreen({@required this.onSignOut});
+
+  final VoidCallback onSignOut;
+
+  Future<void> _signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      onSignOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                 fontSize: 18.0,
               ),
             ),
-            onPressed: null,
+            onPressed: _signOut,
           ),
         ],
       ),

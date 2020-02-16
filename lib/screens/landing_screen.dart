@@ -16,7 +16,6 @@ class _LandingScreenState extends State<LandingScreen> {
   void _updateUser(FirebaseUser user) {
     setState(() {
       _user = user;
-      print("_user.uid value is: ${_user.uid}");
     });
   }
 
@@ -29,6 +28,10 @@ class _LandingScreenState extends State<LandingScreen> {
         onSignIn: _updateUser,
       );
     }
-    return HomeScreen();
+    return HomeScreen(
+      // Since '_updateUser' method accepts a 'FirebaseUser user', and as 'onSignOut' (in 'home_screen.dart') doesn't require an argument
+      // hence passing the '_updateUser' Callback with NULL value
+      onSignOut: () => _updateUser(null),
+    );
   }
 }
