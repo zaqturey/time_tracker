@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_screen.dart';
+import 'package:time_tracker_flutter_course/screens/home_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -8,22 +9,26 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  // '_user' will be used to check if a User is logged in or Not (i.e. if if its value is NULL or not)
+  // '_user' will be used to check if a User is logged in or Not (i.e. if its value is NULL or not)
   FirebaseUser _user;
 
-  // Below method will be passed to the 'onSignIn' Callback of the 'SignInScreen()'
+  // Reference of method will be passed to the (SignInScreen's) 'onSignIn' function as a Callback.
   void _updateUser(FirebaseUser user) {
-    print('User id: ${user.uid}');
+    setState(() {
+      _user = user;
+      print("_user.uid value is: ${_user.uid}");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     if (_user == null) {
       return SignInScreen(
-        // "onSignIn: (user) => _updateUser(user)" --> can be replaced using 'Callback shorthand syntax'
+        // "onSignIn: (user) => _updateUser(user)" -> can be replaced using 'Callback shorthand syntax'
+        // Callback -> Below 'onSignIn' Function, contains the reference/address of another Function i.e. '_updateUser'
         onSignIn: _updateUser,
       );
     }
-    return Container();
+    return HomeScreen();
   }
 }
