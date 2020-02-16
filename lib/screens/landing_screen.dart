@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_screen.dart';
 import 'package:time_tracker_flutter_course/screens/home_screen.dart';
+import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class LandingScreen extends StatefulWidget {
   @override
@@ -23,7 +24,8 @@ class _LandingScreenState extends State<LandingScreen> {
   // and if User is logged in and App is restarted, User will remain logged In,
   // as '_updateUser(user)' is called each time APP is restarted.
   Future<void> _checkCurrentUser() async {
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    FirebaseUser user = await Auth().currentUser();
     _updateUser(user);
   }
 

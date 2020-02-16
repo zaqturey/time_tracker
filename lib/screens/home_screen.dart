@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({@required this.onSignOut});
@@ -8,7 +8,8 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     try {
-      await FirebaseAuth.instance.signOut();
+//      await FirebaseAuth.instance.signOut();
+      await Auth().signOut();
       onSignOut();
     } catch (e) {
       print(e.toString());

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_button.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/social_sign_in_button.dart';
+import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class SignInScreen extends StatelessWidget {
   // defining a parameterized Constructor that takes a 'Function' as a mandatory argument.
@@ -14,9 +15,9 @@ class SignInScreen extends StatelessWidget {
 
   Future<void> _signInAnonymously() async {
     try {
-      final authResult = await FirebaseAuth.instance.signInAnonymously();
-      // calling the Callback after signing successfully
-      onSignIn(authResult.user);
+//      final authResult = await FirebaseAuth.instance.signInAnonymously();
+      final authResultUser = await Auth().signInAnonymously();
+      onSignIn(authResultUser);
     } catch (e) {
       print(e.toString());
     }
