@@ -12,6 +12,21 @@ class _LandingScreenState extends State<LandingScreen> {
   // '_user' will be used to check if a User is logged in or Not (i.e. if its value is NULL or not)
   FirebaseUser _user;
 
+  // 'initState()' Will be called each time app is restarted and hence '_checkCurrentUser()' as well.
+  @override
+  void initState() {
+    super.initState();
+    _checkCurrentUser();
+  }
+
+  // Function '_checkCurrentUser' will verify if User the is logged In or Not,
+  // and if User is logged in and App is restarted, User will remain logged In,
+  // as '_updateUser(user)' is called each time APP is restarted.
+  Future<void> _checkCurrentUser() async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    _updateUser(user);
+  }
+
   // Reference of method will be passed to the (SignInScreen's) 'onSignIn' function as a Callback.
   void _updateUser(FirebaseUser user) {
     setState(() {
