@@ -20,6 +20,10 @@ class _LandingScreenState extends State<LandingScreen> {
   void initState() {
     super.initState();
     _checkCurrentUser();
+    // Subscribing/Registering/Listening to the 'user' stream, produced by the 'onAuthStateChanged' getter method
+    widget.auth.onAuthStateChanged.listen((user) {
+      print('user:${user?.uid}');
+    });
   }
 
   // Function '_checkCurrentUser' will verify if User the is logged In or Not,
