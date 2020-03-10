@@ -43,19 +43,30 @@ class _LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_user == null) {
-      return SignInScreen(
-        auth: widget.auth,
-        // "onSignIn: (user) => _updateUser(user)" -> can be replaced using 'Callback shorthand syntax'
-        // Callback -> Below 'onSignIn' Function, contains the reference/address of another Function i.e. '_updateUser'
-        onSignIn: _updateUser,
-      );
-    }
-    return HomeScreen(
-      auth: widget.auth,
-      // Since '_updateUser' method accepts a 'FirebaseUser user', and as 'onSignOut' (in 'home_screen.dart') doesn't require an argument
-      // hence passing the '_updateUser' Callback with NULL value
-      onSignOut: () => _updateUser(null),
+    return StreamBuilder(
+      stream: widget.auth.onAuthStateChanged,
+      builder: (context, snapshot) {
+        // Checking if Stream has returned at least one value, but is not yet done.
+        if (snapshot.connectionState == ConnectionState.active) {
+          User user = snapshot.data;
+          if (user == null) {
+            return SignInScreen(
+              auth: widget.auth,
+              onSignIn: _updateUser,
+            );
+          }
+          return HomeScreen(
+            auth: widget.auth,
+            onSignOut: () => _updateUser(null),
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
     );
   }
 }
