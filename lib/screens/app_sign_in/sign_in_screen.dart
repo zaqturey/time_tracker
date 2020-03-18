@@ -4,10 +4,7 @@ import 'package:time_tracker_flutter_course/screens/app_sign_in/social_sign_in_b
 import 'package:time_tracker_flutter_course/services/auth.dart';
 
 class SignInScreen extends StatelessWidget {
-  // defining a parameterized Constructor that takes a 'Function' and
-  // an Instance of 'AuthBase' as a mandatory argument.
   SignInScreen({@required this.auth});
-
   final AuthBase auth;
 
   Future<void> _signInAnonymously() async {
