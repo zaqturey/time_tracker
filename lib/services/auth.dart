@@ -49,10 +49,10 @@ class Auth implements AuthBase {
 
   @override
   Future<User> signInWithGoogle() async {
-    GoogleSignIn googleSignIn = GoogleSignIn();
-    GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    final googleSignIn = GoogleSignIn();
+    final googleSignInAccount = await googleSignIn.signIn();
     if (googleSignInAccount != null) {
-      GoogleSignInAuthentication googleAuth = await googleSignInAccount.authentication;
+      final googleAuth = await googleSignInAccount.authentication;
       if (googleAuth.idToken != null && googleAuth.accessToken != null) {
         final googleAuthResult = await _firebaseAuth.signInWithCredential(
           GoogleAuthProvider.getCredential(
