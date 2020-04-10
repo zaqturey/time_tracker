@@ -18,6 +18,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget - Continued (added Widgets to the List)
+***email_sign_in_form.dart***
+1. '_buildChildren()' now returns a List of 'TextField's (for Email and Password), a 'RaisedButton' (for 'Sign In') and a 'FlatButton' (for 'Register').
+2. A 'SizedBox' is placed between each Widget of the List.
+
 # Designing 'Card' Widget
 ***email_sign_in_form.dart***
 1. Replaced 'Container' with a 'Column' Widget to place the Widgets vertically.
