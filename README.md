@@ -18,6 +18,15 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget
+***email_sign_in_form.dart***
+1. Replaced 'Container' with a 'Column' Widget to place the Widgets vertically.
+2. Set 'MainAxisSize.min' so Column length is limited to the length required by its Widgets.
+3. 'children' widget call a method i.e. '_buildChildren()' that returns a 'List<Widget>'
+4. Set 'CrossAxisAlignment.stretch' so all widgets inside the column can take full length.
+5. Wrapped the 'Column' inside a 'Padding Widget'
+6. Added a new method i.e. _buildChildren() that returns a 'List<Widget>' (currently its an Empty List)
+
 # Introducing 'Card' Widget
 1. email_sign_in_form.dart >> Added a new class i.e. 'EmailSignInForm'
 2. email_sign_in_screen.dart >> Replaced '_buildContent()' with a 'Card' Widget that has 'EmailSignInForm()' as its Child.
