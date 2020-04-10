@@ -18,6 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Introducing 'Card' Widget
+1. email_sign_in_form.dart >> Added a new class i.e. 'EmailSignInForm'
+2. email_sign_in_screen.dart >> Replaced '_buildContent()' with a 'Card' Widget that has 'EmailSignInForm()' as its Child.
+3. email_sign_in_screen.dart >> Wrapped 'Card' Widget in a 'Padding' Widget.
+4. email_sign_in_screen.dart >> Also removed declaration for '_buildContent()' Widget.
+
+
 # SignInWithEmail
 1. email_sign_in_screen.dart >> Added a new class i.e. 'EmailSignInScreen'
 2. email_sign_in_screen.dart >> Returns a Scaffold that contains an and AppBar and an Empty Container.

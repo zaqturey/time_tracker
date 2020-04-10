@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_tracker_flutter_course/screens/app_sign_in/email_sign_in_form.dart';
 
 class EmailSignInScreen extends StatelessWidget {
   @override
@@ -8,12 +9,13 @@ class EmailSignInScreen extends StatelessWidget {
         title: Text('Sign In'),
         elevation: 2.0,
       ),
-      body: _buildContent(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Card(
+          child: EmailSignInForm(),
+        ),
+      ),
       backgroundColor: Colors.grey[200],
     );
-  }
-
-  Widget _buildContent() {
-    return Container();
   }
 }
