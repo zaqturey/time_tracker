@@ -18,6 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget - Continued (replaced 'RaisedButton')
+***form_submit_button.dart***
+1. Added a new class i.e. 'FormSubmitButton' that extends 'CustomRaisedButton'
+***email_sign_in_form.dart***
+1. Replaced 'RaisedButton' with 'FormSubmitButton' for 'Sign In'.
+
+
 # Designing 'Card' Widget - Continued (added Widgets to the List)
 ***email_sign_in_form.dart***
 1. '_buildChildren()' now returns a List of 'TextField's (for Email and Password), a 'RaisedButton' (for 'Sign In') and a 'FlatButton' (for 'Register').
