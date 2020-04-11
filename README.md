@@ -18,6 +18,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget - Converting 'stl' to 'stf'
+***email_sign_in_form.dart***
+1. Changed 'EmailSignInForm' to 'StatefulWidget' as we are using the 'TextEditingController'
+
 # Designing 'Card' Widget - Introducing 'TextEditingController'
 ***email_sign_in_form.dart***
 1. Added two 'TextEditingController' i.e. '_emailController' and '_passwordController'
