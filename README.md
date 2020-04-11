@@ -18,12 +18,18 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget - Introducing 'TextEditingController'
+***email_sign_in_form.dart***
+1. Added two 'TextEditingController' i.e. '_emailController' and '_passwordController'
+2. Updated 'Email' and 'Password 'TextField's by adding the above defined 'controller's i.e. '_emailController' and '_passwordController'
+3. Added a new method i.e. '_submit' and updated 'onPressed' of 'FormSubmitButton' to call it that just prints the values in 'email' and 'password' TextFields
+
 # Designing 'Card' Widget - Continued (replaced 'RaisedButton')
 ***form_submit_button.dart***
 1. Added a new class i.e. 'FormSubmitButton' that extends 'CustomRaisedButton'
+
 ***email_sign_in_form.dart***
 1. Replaced 'RaisedButton' with 'FormSubmitButton' for 'Sign In'.
-
 
 # Designing 'Card' Widget - Continued (added Widgets to the List)
 ***email_sign_in_form.dart***
