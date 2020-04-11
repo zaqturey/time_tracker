@@ -18,6 +18,14 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# Designing 'Card' Widget - Introducing and implementing 'Enum'
+***email_sign_in_form.dart***
+1. Created an Enum i.e. 'EmailSignInFormType' with two values i.e. 'signIn' and 'register'
+2. Created a variable i.e. '_formType' of type 'EmailSignInFormType' and assigned it an initial value of 'EmailSignInFormType.signIn'.
+3. Created two variables 'primaryText' and 'secondaryText' and used their values in Text fields of 'FormSubmitButton' and 'FlatButton'.
+4. Created a new method i.e. '_toggleFormType' that call the 'setState' to update the value of '_formType' depending on the current value of 'EmailSignInFormType.signIn'
+5. '_toggleFormType' method also clear out the text present in the '_emailController' and '_passwordController'
+
 # Designing 'Card' Widget - Converting 'stl' to 'stf'
 ***email_sign_in_form.dart***
 1. Changed 'EmailSignInForm' to 'StatefulWidget' as we are using the 'TextEditingController'
