@@ -18,13 +18,35 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
+***auth.dart***
+1. Added two new Abstract methods in 'AuthBase' class i.e. 'createUserWithEmailAndPassword' and 'signInWithEmailAndPassword'
+2. Overridden and implemented the above Abstract methods in the 'Auth' class that extends 'AuthBase' class.
+
+***email_sign_in_form.dart***
+1. Declared a new parameter of 'AuthBase' type i.e. 'auth'
+2. Created a Constructor that accepts a @required 'auth' parameter.
+3. Created Getters for 'email' and 'password' using '_emailController.text' and '_passwordController.text'
+4. Implemented '_submit()' method to call Firebase methods depending on the 'Sign in' or 'Create an account'
+5. Firebase Console >> Enabled 'Sign-in method' for 'Email/Password'
+
+***email_sign_in_screen.dart***
+Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it from the calling class i.e. 'EmailSignInScreen'
+1. Declared a new parameter of 'AuthBase' type i.e. 'auth'
+2. Created a Constructor that accepts a @required 'auth' parameter.
+3. Passed in the 'auth' as an argument to the 'EmailSignInScreen' function.
+
+***sign_in_screen.dart***
+1. Updated '_signInWithEmail' i.e. by passing 'auth' argument to the 'EmailSignInScreen' callback
+
+
 # Designing 'Card' Widget - Introducing and implementing 'Enum'
 ***email_sign_in_form.dart***
 1. Created an Enum i.e. 'EmailSignInFormType' with two values i.e. 'signIn' and 'register'
 2. Created a variable i.e. '_formType' of type 'EmailSignInFormType' and assigned it an initial value of 'EmailSignInFormType.signIn'.
 3. Created two variables 'primaryText' and 'secondaryText' and used their values in Text fields of 'FormSubmitButton' and 'FlatButton'.
 4. Created a new method i.e. '_toggleFormType' that call the 'setState' to update the value of '_formType' depending on the current value of 'EmailSignInFormType.signIn'
-5. '_toggleFormType' method also clear out the text present in the '_emailController' and '_passwordController'
+5. '_toggleFormType' method also clears out the text present in the '_emailController' and '_passwordController'
 
 # Designing 'Card' Widget - Converting 'stl' to 'stf'
 ***email_sign_in_form.dart***
