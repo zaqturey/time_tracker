@@ -18,6 +18,10 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# 'Sign in' Form - POP
+***email_sign_in_form.dart***
+1. Popped the 'email_sign_in_form' upon the successful 'Sign in' or 'Create an account' operation.
+
 # SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
 ***auth.dart***
 1. Added two new Abstract methods in 'AuthBase' class i.e. 'createUserWithEmailAndPassword' and 'signInWithEmailAndPassword'

@@ -29,9 +29,10 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       if (_formType == EmailSignInFormType.signIn) {
         await widget.auth.signInWithEmailAndPassword(_email, _password);
       } else {
-        // otherwise calling firebase 'createUserWithEmailAndPassword' method
+        // otherwise calling firebase 'createUserWithEmailAndPassword' method to Create a New Account
         await widget.auth.createUserWithEmailAndPassword(_email, _password);
       }
+      Navigator.of(context).pop();
     } on Exception catch (e) {
       print(e.toString());
     }
