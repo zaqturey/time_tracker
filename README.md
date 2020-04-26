@@ -11,7 +11,7 @@ A few resources to get you started if this is your first Flutter project:
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
+For help to get started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
@@ -90,7 +90,7 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 
 # Designing 'Card' Widget - Continued (added Widgets to the List)
 ***email_sign_in_form.dart***
-1. '_buildChildren()' now returns a List of 'TextField's (for Email and Password), a 'RaisedButton' (for 'Sign In') and a 'FlatButton' (for 'Register').
+1. '_buildChildren()' now returns a List of 'TextField's (for Email and Password), a 'RaisedButton' (for 'Sign In'), and a 'FlatButton' (for 'Register').
 2. A 'SizedBox' is placed between each Widget of the List.
 
 # Designing 'Card' Widget
@@ -114,7 +114,7 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 2. email_sign_in_screen.dart >> Returns a Scaffold that contains an and AppBar and an Empty Container.
 3. sign_in_screen.dart >> Added a new method i.e. '_signInWithEmail()' that using 'Navigator.of' pushes a new screen i.e. 'EmailSignInScreen()'
 4. sign_in_screen.dart >> 'onPressed' of SignInButton ('Sign in with Email') now calls the '_signInWithEmail(context)'
-5. sign_in_screen.dart >> As context is needed to by '_signInWithEmail' method, the Context of 'build' widget is passed all the way to it.
+5. sign_in_screen.dart >> As context is needed by '_signInWithEmail' method, the Context of 'build' widget is passed all the way to it.
 
 # Feature Added -> 'signInWithFaceBook()'
 ***Pre-requisites for Android (refer UC-175, UC-182) >>***
