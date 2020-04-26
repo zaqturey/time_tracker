@@ -18,14 +18,19 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
-# 'Sign in' Form - POP
+# 'Email Sign in' Form - TextField Refactoring
 ***email_sign_in_form.dart***
-1. Popped the 'email_sign_in_form' upon the successful 'Sign in' or 'Create an account' operation.
+1. Email TextField: Added 'autocorrect: false', 'TextInputType.emailAddress' and 'TextInputAction.next' properties.
+2. Password TextField: Added 'TextInputAction.done' property.
+
+# 'Email Sign in' Form - Popped/Removed
+***email_sign_in_form.dart***
+1. Popped/Removed the 'email_sign_in_form' upon the successful 'Sign in' or 'Create an account' operation.
 
 # SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
 ***auth.dart***
 1. Added two new Abstract methods in 'AuthBase' class i.e. 'createUserWithEmailAndPassword' and 'signInWithEmailAndPassword'
-2. Overridden and implemented the above Abstract methods in the 'Auth' class that extends 'AuthBase' class.
+2. Overridden and implemented the above Abstract methods in the 'Auth' class which extends 'AuthBase' class.
 
 ***email_sign_in_form.dart***
 1. Declared a new parameter of 'AuthBase' type i.e. 'auth'
