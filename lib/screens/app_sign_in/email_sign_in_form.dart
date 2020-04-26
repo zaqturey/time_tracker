@@ -54,12 +54,16 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       TextField(
         controller: _emailController,
         decoration: InputDecoration(labelText: 'Email', hintText: 'test@email.com'),
+        autocorrect: false,
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.next,
       ),
       SizedBox(height: 10.0),
       TextField(
         controller: _passwordController,
         decoration: InputDecoration(labelText: 'Password'),
         obscureText: true,
+        textInputAction: TextInputAction.done,
       ),
       SizedBox(height: 10.0),
       FormSubmitButton(
