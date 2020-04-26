@@ -18,6 +18,15 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# 'Email Sign in' Form - Implementing 'FocusNode' 
+***email_sign_in_form.dart***
+1. Added two new objects of 'FocusNode' class i.e. '_emailFocusNode' and '_passwordFocusNode'
+2. For Email TextField, Added 'focusNode' property and assigned '_emailFocusNode' as its value.
+3. For Password TextField, Added 'focusNode' property and assigned '_passwordFocusNode' as its value.
+4. Added a new Void method i.e. '_emailEditingComplete()' that requests for '_passwordFocusNode'
+5. For Email TextField, Added 'onEditingComplete' property and assigned '_emailEditingComplete' callback as its value.
+6. For Password TextField, Added 'onEditingComplete' property and assigned '_submit' callback as its value.
+
 # 'Email Sign in' Form - TextField Refactoring
 ***email_sign_in_form.dart***
 1. Email TextField: Added 'autocorrect: false', 'TextInputType.emailAddress' and 'TextInputAction.next' properties.
