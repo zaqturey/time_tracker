@@ -58,24 +58,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     final secondaryText = _formType == EmailSignInFormType.signIn ? 'Need an account? Register' : 'Have an account? Sign In';
 
     return [
-      TextField(
-        controller: _emailController,
-        focusNode: _emailFocusNode,
-        decoration: InputDecoration(labelText: 'Email', hintText: 'test@email.com'),
-        autocorrect: false,
-        keyboardType: TextInputType.emailAddress,
-        textInputAction: TextInputAction.next,
-        onEditingComplete: _emailEditingComplete,
-      ),
+      _buildEmailTextField(),
       SizedBox(height: 10.0),
-      TextField(
-        controller: _passwordController,
-        focusNode: _passwordFocusNode,
-        decoration: InputDecoration(labelText: 'Password'),
-        obscureText: true,
-        textInputAction: TextInputAction.done,
-        onEditingComplete: _submit,
-      ),
+      _buildPasswordTextField(),
       SizedBox(height: 10.0),
       FormSubmitButton(
         text: primaryText,
@@ -87,6 +72,29 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         onPressed: _toggleFormType,
       ),
     ];
+  }
+
+  TextField _buildEmailTextField() {
+    return TextField(
+      controller: _emailController,
+      focusNode: _emailFocusNode,
+      decoration: InputDecoration(labelText: 'Email', hintText: 'test@email.com'),
+      autocorrect: false,
+      keyboardType: TextInputType.emailAddress,
+      textInputAction: TextInputAction.next,
+      onEditingComplete: _emailEditingComplete,
+    );
+  }
+
+  TextField _buildPasswordTextField() {
+    return TextField(
+      controller: _passwordController,
+      focusNode: _passwordFocusNode,
+      decoration: InputDecoration(labelText: 'Password'),
+      obscureText: true,
+      textInputAction: TextInputAction.done,
+      onEditingComplete: _submit,
+    );
   }
 
   @override

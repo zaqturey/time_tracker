@@ -18,6 +18,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+# 'Email Sign in' Form - Extracted methods for 'Email' and 'Password' TextFields 
+***email_sign_in_form.dart***
+1. Extracted and replaced 'Email' TextField declaration to a new method i.e. '_buildEmailTextField()'
+2. Extracted and replaced 'Password' TextField declaration to a new method i.e. '_buildPasswordTextField()'
+
 # 'Email Sign in' Form - Implementing 'FocusNode' 
 ***email_sign_in_form.dart***
 1. Added two new objects of 'FocusNode' class i.e. '_emailFocusNode' and '_passwordFocusNode'
