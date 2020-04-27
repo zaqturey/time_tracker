@@ -18,12 +18,24 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
-# 'Email Sign in' Form - Extracted methods for 'Email' and 'Password' TextFields 
+### 'Email Sign in' Form - Enable 'Sign In' button only after validation
+##### email_sign_in_form.dart  
+- Note:-
+- In order to reflect the Widget changes, rebuild the Widget Tree by calling the 'setState()'
+- 'onChanged' requires the input value parameter, but you can opt not to use/accept it in the called function.
+1. Added a new boolean i.e. 'submitEnabled' that will be true when '_email' and '_password' fields are not empty.
+2. Updated 'onPressed' callback of 'FormSubmitButton' to call '_submit' (when 'submitEnabled' is TRUE) otherwise call 'null'
+3. Created a new void method i.e. '_updateState' that just rebuilds the Widget Tree by calling the 'setState()'
+4. Added 'onChanged' property to 'Email' TextField that calls the '_updateState()' method.
+5. Added 'onChanged' property to 'Password' TextField that also calls the '_updateState()' method.
+
+
+### 'Email Sign in' Form - Extracted methods for 'Email' and 'Password' TextFields 
 ***email_sign_in_form.dart***
 1. Extracted and replaced 'Email' TextField declaration to a new method i.e. '_buildEmailTextField()'
 2. Extracted and replaced 'Password' TextField declaration to a new method i.e. '_buildPasswordTextField()'
 
-# 'Email Sign in' Form - Implementing 'FocusNode' 
+### 'Email Sign in' Form - Implementing 'FocusNode' 
 ***email_sign_in_form.dart***
 1. Added two new objects of 'FocusNode' class i.e. '_emailFocusNode' and '_passwordFocusNode'
 2. For Email TextField, Added 'focusNode' property and assigned '_emailFocusNode' as its value.
@@ -32,16 +44,16 @@ samples, guidance on mobile development, and a full API reference.
 5. For Email TextField, Added 'onEditingComplete' property and assigned '_emailEditingComplete' callback as its value.
 6. For Password TextField, Added 'onEditingComplete' property and assigned '_submit' callback as its value.
 
-# 'Email Sign in' Form - TextField Refactoring
+### 'Email Sign in' Form - TextField Refactoring
 ***email_sign_in_form.dart***
 1. Email TextField: Added 'autocorrect: false', 'TextInputType.emailAddress' and 'TextInputAction.next' properties.
 2. Password TextField: Added 'TextInputAction.done' property.
 
-# 'Email Sign in' Form - Popped/Removed
+### 'Email Sign in' Form - Popped/Removed
 ***email_sign_in_form.dart***
 1. Popped/Removed the 'email_sign_in_form' upon the successful 'Sign in' or 'Create an account' operation.
 
-# SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
+### SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
 ***auth.dart***
 1. Added two new Abstract methods in 'AuthBase' class i.e. 'createUserWithEmailAndPassword' and 'signInWithEmailAndPassword'
 2. Overridden and implemented the above Abstract methods in the 'Auth' class which extends 'AuthBase' class.
@@ -63,7 +75,7 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 1. Updated '_signInWithEmail' i.e. by passing 'auth' argument to the 'EmailSignInScreen' callback
 
 
-# Designing 'Card' Widget - Introducing and implementing 'Enum'
+### Designing 'Card' Widget - Introducing and implementing 'Enum'
 ***email_sign_in_form.dart***
 1. Created an Enum i.e. 'EmailSignInFormType' with two values i.e. 'signIn' and 'register'
 2. Created a variable i.e. '_formType' of type 'EmailSignInFormType' and assigned it an initial value of 'EmailSignInFormType.signIn'.
@@ -71,29 +83,29 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 4. Created a new method i.e. '_toggleFormType' that call the 'setState' to update the value of '_formType' depending on the current value of 'EmailSignInFormType.signIn'
 5. '_toggleFormType' method also clears out the text present in the '_emailController' and '_passwordController'
 
-# Designing 'Card' Widget - Converting 'stl' to 'stf'
+### Designing 'Card' Widget - Converting 'stl' to 'stf'
 ***email_sign_in_form.dart***
 1. Changed 'EmailSignInForm' to 'StatefulWidget' as we are using the 'TextEditingController'
 
-# Designing 'Card' Widget - Introducing 'TextEditingController'
+### Designing 'Card' Widget - Introducing 'TextEditingController'
 ***email_sign_in_form.dart***
 1. Added two 'TextEditingController' i.e. '_emailController' and '_passwordController'
 2. Updated 'Email' and 'Password 'TextField's by adding the above defined 'controller's i.e. '_emailController' and '_passwordController'
 3. Added a new method i.e. '_submit' and updated 'onPressed' of 'FormSubmitButton' to call it that just prints the values in 'email' and 'password' TextFields
 
-# Designing 'Card' Widget - Continued (replaced 'RaisedButton')
+### Designing 'Card' Widget - Continued (replaced 'RaisedButton')
 ***form_submit_button.dart***
 1. Added a new class i.e. 'FormSubmitButton' that extends 'CustomRaisedButton'
 
 ***email_sign_in_form.dart***
 1. Replaced 'RaisedButton' with 'FormSubmitButton' for 'Sign In'.
 
-# Designing 'Card' Widget - Continued (added Widgets to the List)
+### Designing 'Card' Widget - Continued (added Widgets to the List)
 ***email_sign_in_form.dart***
 1. '_buildChildren()' now returns a List of 'TextField's (for Email and Password), a 'RaisedButton' (for 'Sign In'), and a 'FlatButton' (for 'Register').
 2. A 'SizedBox' is placed between each Widget of the List.
 
-# Designing 'Card' Widget
+### Designing 'Card' Widget
 ***email_sign_in_form.dart***
 1. Replaced 'Container' with a 'Column' Widget to place the Widgets vertically.
 2. Set 'MainAxisSize.min' so Column length is limited to the length required by its Widgets.
@@ -102,21 +114,21 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 5. Wrapped the 'Column' inside a 'Padding Widget'
 6. Added a new method i.e. _buildChildren() that returns a 'List<Widget>' (currently its an Empty List)
 
-# Introducing 'Card' Widget
+### Introducing 'Card' Widget
 1. email_sign_in_form.dart >> Added a new class i.e. 'EmailSignInForm'
 2. email_sign_in_screen.dart >> Replaced '_buildContent()' with a 'Card' Widget that has 'EmailSignInForm()' as its Child.
 3. email_sign_in_screen.dart >> Wrapped 'Card' Widget in a 'Padding' Widget.
 4. email_sign_in_screen.dart >> Also removed declaration for '_buildContent()' Widget.
 
 
-# SignInWithEmail
+### SignInWithEmail
 1. email_sign_in_screen.dart >> Added a new class i.e. 'EmailSignInScreen'
 2. email_sign_in_screen.dart >> Returns a Scaffold that contains an and AppBar and an Empty Container.
 3. sign_in_screen.dart >> Added a new method i.e. '_signInWithEmail()' that using 'Navigator.of' pushes a new screen i.e. 'EmailSignInScreen()'
 4. sign_in_screen.dart >> 'onPressed' of SignInButton ('Sign in with Email') now calls the '_signInWithEmail(context)'
 5. sign_in_screen.dart >> As context is needed by '_signInWithEmail' method, the Context of 'build' widget is passed all the way to it.
 
-# Feature Added -> 'signInWithFaceBook()'
+### Feature Added -> 'signInWithFaceBook()'
 ***Pre-requisites for Android (refer UC-175, UC-182) >>***
 - Registered as a FaceBook App on 'https://developers.facebook.com'
 - Follow steps from Section 4 i.e.  'Edit Your Resources and Manifest'

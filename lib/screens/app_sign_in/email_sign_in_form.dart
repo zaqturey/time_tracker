@@ -26,6 +26,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   // Setting default value to '_formType'
   EmailSignInFormType _formType = EmailSignInFormType.signIn;
 
+  void _toggleFormType() {
+    setState(() {
+      _formType = _formType == EmailSignInFormType.signIn ? EmailSignInFormType.register : EmailSignInFormType.signIn;
+    });
+    _emailController.clear();
+    _passwordController.clear();
+  }
+
   void _submit() async {
     try {
       // If current form is 'Sign In' form, calling firebase 'signInWithEmailAndPassword' method
@@ -45,33 +53,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     FocusScope.of(context).requestFocus(_passwordFocusNode);
   }
 
-  void _toggleFormType() {
-    setState(() {
-      _formType = _formType == EmailSignInFormType.signIn ? EmailSignInFormType.register : EmailSignInFormType.signIn;
-    });
-    _emailController.clear();
-    _passwordController.clear();
-  }
-
-  List<Widget> _buildChildren() {
-    final primaryText = _formType == EmailSignInFormType.signIn ? 'Sign In' : 'Create an account';
-    final secondaryText = _formType == EmailSignInFormType.signIn ? 'Need an account? Register' : 'Have an account? Sign In';
-
-    return [
-      _buildEmailTextField(),
-      SizedBox(height: 10.0),
-      _buildPasswordTextField(),
-      SizedBox(height: 10.0),
-      FormSubmitButton(
-        text: primaryText,
-        onPressed: () => _submit(),
-      ),
-      SizedBox(height: 10.0),
-      FlatButton(
-        child: Text(secondaryText),
-        onPressed: _toggleFormType,
-      ),
-    ];
+  void _updateState() {
+    setState(() {});
   }
 
   TextField _buildEmailTextField() {
@@ -82,6 +65,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
+      onChanged: (email) => _updateState(),
       onEditingComplete: _emailEditingComplete,
     );
   }
@@ -93,8 +77,36 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       decoration: InputDecoration(labelText: 'Password'),
       obscureText: true,
       textInputAction: TextInputAction.done,
+      onChanged: (password) => _updateState(),
       onEditingComplete: _submit,
     );
+  }
+
+  List<Widget> _buildChildren() {
+    final primaryText = _formType == EmailSignInFormType.signIn
+        ? 'Sign In'
+        : 'Create an account';
+    final secondaryText = _formType == EmailSignInFormType.signIn
+        ? 'Need an account? Register'
+        : 'Have an account? Sign In';
+
+    bool submitEnabled = _email.isNotEmpty && _password.isNotEmpty;
+
+    return [
+      _buildEmailTextField(),
+      SizedBox(height: 10.0),
+      _buildPasswordTextField(),
+      SizedBox(height: 10.0),
+      FormSubmitButton(
+        text: primaryText,
+        onPressed: submitEnabled ? _submit : null,
+      ),
+      SizedBox(height: 10.0),
+      FlatButton(
+        child: Text(secondaryText),
+        onPressed: _toggleFormType,
+      ),
+    ];
   }
 
   @override
