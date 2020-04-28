@@ -18,12 +18,28 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+### 'Email Sign in' Form - Show Error text for email and password if 'Sign In' button is pressed once and '_email' and '_password' fields are empty
+***string_validator.dart***
+1. Added two String variables i.e. 'emptyEmailErrorText' and 'emptyPasswordErrorText' to standardized error texts. 
+
+***email_sign_in_form.dart***
+1. Added a new bool variable '_isSubmitted' with default value of 'false', will be used to check if 'Sign in' button pressed or not.
+2. Updated '_submit()' method i.e. added 'setState()' to make '_isSubmitted' to 'true'
+3. Updated '_toggleFormType()' method i.e. updated 'setState()' to make '_isSubmitted' to 'false'
+4. Updated '_buildEmailTextField()' i.e. added a new bool 'showErrorText' will only be TRUE if 'Sign in' button is pressed and '_email' field is Empty
+5. Added 'errorText' property to 'Email' TextField, that will display error text if 'showErrorText' is TRUE otherwise null.
+6. Updated '_buildPasswordTextField()' i.e. added a new bool 'showErrorText' will only be TRUE if 'Sign in' button is pressed and '_password' field is Empty
+7. Added 'errorText' property to 'Password' TextField, that will display error text if 'showErrorText' is TRUE otherwise null.
+
+
+
+
 ### 'Email Sign in' Form - Added a new file (and class) for String validation 
 ***string_validator.dart***
 1. Added a new 'EmailAndPasswordValidators' class defines 'emailValidator' and 'passwordValidator' variables.  
 
-***string_validator.dart***
-1. MIXIN:  'EmailSignInForm' now Mixin with 'EmailAndPasswordValidators' class.
+***email_sign_in_form.dart***
+1. MIXIN: 'EmailSignInForm' now Mixin with 'EmailAndPasswordValidators' class.
 2. Refactored 'submitEnabled' to use 'emailValidator' (for '_email') and 'passwordValidator' (for '_password')
 
 ### 'Email Sign in' Form - Enable 'Sign In' button only after validation
