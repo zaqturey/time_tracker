@@ -18,6 +18,14 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+### 'Email Sign in' Form - Added a new file (and class) for String validation 
+***string_validator.dart***
+1. Added a new 'EmailAndPasswordValidators' class defines 'emailValidator' and 'passwordValidator' variables.  
+
+***string_validator.dart***
+1. MIXIN:  'EmailSignInForm' now Mixin with 'EmailAndPasswordValidators' class.
+2. Refactored 'submitEnabled' to use 'emailValidator' (for '_email') and 'passwordValidator' (for '_password')
+
 ### 'Email Sign in' Form - Enable 'Sign In' button only after validation
 ##### email_sign_in_form.dart  
 - Note:-
