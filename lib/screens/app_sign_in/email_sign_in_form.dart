@@ -126,8 +126,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         && widget.passwordValidator.isValid(_password)
         && !_isLoading;
 
-    bool isToggleFormEnabled = !_isLoading;
-
     return [
       _buildEmailTextField(),
       SizedBox(height: 10.0),
@@ -140,7 +138,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       SizedBox(height: 10.0),
       FlatButton(
         child: Text(secondaryText),
-        onPressed: isToggleFormEnabled ? _toggleFormType : null,
+        onPressed: !_isLoading ? _toggleFormType : null,
       ),
     ];
   }

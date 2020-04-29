@@ -17,6 +17,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+### 'Email Sign in' Screen - Refactored (removed 'isToggleFormEnabled')
+***email_sign_in_screen.dart***
+1. Removed 'isToggleFormEnabled' variable
+2. Updated 'onPressed' of 'FlatButton' (Toggle Form button) i.e. to use '!_isLoading' to call '_toggleFormType' or 'null' depending on its value.
+
 ### 'Email Sign in' Screen - Fixing Vertical 'Overflow' error on small screens
 ***email_sign_in_screen.dart***
 1. SingleChildScrollView: -> Wrapped the 'body' content/child (i.e. padding) into a 'SingleChildScrollView' widget to make the body contents vertically Scrollable.
