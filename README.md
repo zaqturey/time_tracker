@@ -17,12 +17,13 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+### 'Email Sign in' Screen - Fixing Vertical 'Overflow' error on small screens
+***email_sign_in_screen.dart***
+1. SingleChildScrollView: -> Wrapped the 'body' content/child (i.e. padding) into a 'SingleChildScrollView' widget to make the body contents vertically Scrollable.
+
 ### 'Email Sign in' Form - Updating 'Email' focus logic
 ***email_sign_in_form.dart***
 1. Updated '_emailEditingComplete' i.e. Focus will only change from Email to Password TextField if the Email is valid i.e. NonEmpty.
-
-
-
 
 ### 'Email Sign in' Form - Disable form while an auth request is in progress.
 ***email_sign_in_form.dart***
