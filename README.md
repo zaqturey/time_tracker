@@ -18,6 +18,17 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+### 'Email Sign in' Form - Disable form while an auth request is in progress.
+***email_sign_in_form.dart***
+1. Added a new bool variable '_isLoading' with default value of 'FALSE', it will be used to disable 'Sign in' and 'Toggle Form' button while an 'auth' request is in progress.
+2. Updated 'submitEnabled' i.e. its this button will remain disabled (i.e. its value will remain FALSE) until value of  '_isLoading' is TRUE. 
+3. Updated '_submit()' i.e. added '_isLoading = true' to its in initial (before auth request) 'setState()' call.
+4. Updated '_submit()' i.e. added 'finally' to the try-catch and added '_isLoading = false' to the 'setState()' call in the 'finally' block.
+5. Updated '_buildChildren' i.e. Added a new bool variable '_isLoading' with default value of 'FALSE'.
+6. Updated 'onPressed' of 'FormSubmitButton' i.e. 'submitEnabled' to call '_submit' or 'null' depending on if its value is TRUE or FALSE.
+7. Updated '_buildChildren()' i.e. added a new bool variable '_isToggleFormEnabled' its value is TRUE if there is no 'auth' request is in progress i.e. (!_isLoading).
+8. Updated 'onPressed' of 'FlatButton' (Toggle Form button) i.e. 'isToggleFormEnabled' to call '_toggleFormType' or 'null' depending on if its value is TRUE or FALSE.
+
 ### 'Email Sign in' Form - Show Error text for email and password if 'Sign In' button is pressed once and '_email' and '_password' fields are empty
 ***string_validator.dart***
 1. Added two String variables i.e. 'emptyEmailErrorText' and 'emptyPasswordErrorText' to standardized error texts. 
@@ -30,9 +41,6 @@ samples, guidance on mobile development, and a full API reference.
 5. Added 'errorText' property to 'Email' TextField, that will display error text if 'showErrorText' is TRUE otherwise null.
 6. Updated '_buildPasswordTextField()' i.e. added a new bool 'showErrorText' will only be TRUE if 'Sign in' button is pressed and '_password' field is Empty
 7. Added 'errorText' property to 'Password' TextField, that will display error text if 'showErrorText' is TRUE otherwise null.
-
-
-
 
 ### 'Email Sign in' Form - Added a new file (and class) for String validation 
 ***string_validator.dart***

@@ -30,6 +30,11 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   // Setting default value to be used for 'Sign in' button i.e to check if it is pressed
   bool _isSubmitted = false;
 
+  // Setting default value for '_isLoading' to disable 'Sign in' button while an 'auth' request is in progress
+  bool _isLoading = false;
+
+
+
   void _toggleFormType() {
     setState(() {
       _isSubmitted = false;
@@ -42,6 +47,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   void _submit() async {
     setState(() {
       _isSubmitted = true;
+      _isLoading = true;
     });
     try {
       // If current form is 'Sign In' form, calling firebase 'signInWithEmailAndPassword' method
@@ -54,6 +60,10 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       Navigator.of(context).pop();
     } on Exception catch (e) {
       print(e.toString());
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -74,6 +84,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'test@email.com',
+        enabled: _isLoading == false,
         errorText: showErrorText ? widget.emptyEmailErrorText : null,
       ),
       autocorrect: false,
@@ -91,6 +102,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       focusNode: _passwordFocusNode,
       decoration: InputDecoration(
         labelText: 'Password',
+        enabled: _isLoading == false,
         errorText: showErrorText ? widget.emptyPasswordErrorText : null,
       ),
       obscureText: true,
@@ -108,7 +120,11 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         ? 'Need an account? Register'
         : 'Have an account? Sign In';
 
-    bool submitEnabled = widget.emailValidator.isValid(_email) && widget.passwordValidator.isValid(_password);
+    bool submitEnabled = widget.emailValidator.isValid(_email)
+        && widget.passwordValidator.isValid(_password)
+        && !_isLoading;
+
+    bool isToggleFormEnabled = !_isLoading;
 
     return [
       _buildEmailTextField(),
@@ -122,7 +138,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       SizedBox(height: 10.0),
       FlatButton(
         child: Text(secondaryText),
-        onPressed: _toggleFormType,
+        onPressed: isToggleFormEnabled ? _toggleFormType : null,
       ),
     ];
   }
