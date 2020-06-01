@@ -17,20 +17,38 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Commits History
 
+************************************************************************************************************************************************************************
+### Added 'showDialog' that returns an 'AlertDialog'
+========================================================================================================================================================================
+***email_sign_in_screen.dart***
+1. '_submit()' -> Exception block now displays a 'showDialog' that returns an 'AlertDialog'
+
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Screen - Refactored (removed 'isToggleFormEnabled')
+========================================================================================================================================================================
 ***email_sign_in_screen.dart***
 1. Removed 'isToggleFormEnabled' variable
 2. Updated 'onPressed' of 'FlatButton' (Toggle Form button) i.e. to use '!_isLoading' to call '_toggleFormType' or 'null' depending on its value.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Screen - Fixing Vertical 'Overflow' error on small screens
+========================================================================================================================================================================
 ***email_sign_in_screen.dart***
 1. SingleChildScrollView: -> Wrapped the 'body' content/child (i.e. padding) into a 'SingleChildScrollView' widget to make the body contents vertically Scrollable.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Updating 'Email' focus logic
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Updated '_emailEditingComplete' i.e. Focus will only change from Email to Password TextField if the Email is valid i.e. NonEmpty.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Disable form while an auth request is in progress.
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Added a new bool variable '_isLoading' with default value of 'FALSE', it will be used to disable 'Sign in' and 'Toggle Form' button while an 'auth' request is in progress.
 2. Updated 'submitEnabled' i.e. its this button will remain disabled (i.e. its value will remain FALSE) until value of  '_isLoading' is TRUE. 
@@ -41,7 +59,10 @@ samples, guidance on mobile development, and a full API reference.
 7. Updated '_buildChildren()' i.e. added a new bool variable '_isToggleFormEnabled' its value is TRUE if there is no 'auth' request is in progress i.e. (!_isLoading).
 8. Updated 'onPressed' of 'FlatButton' (Toggle Form button) i.e. 'isToggleFormEnabled' to call '_toggleFormType' or 'null' depending on if its value is TRUE or FALSE.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Show Error text for email and password if 'Sign In' button is pressed once and '_email' and '_password' fields are empty
+========================================================================================================================================================================
 ***string_validator.dart***
 1. Added two String variables i.e. 'emptyEmailErrorText' and 'emptyPasswordErrorText' to standardized error texts. 
 
@@ -54,7 +75,10 @@ samples, guidance on mobile development, and a full API reference.
 6. Updated '_buildPasswordTextField()' i.e. added a new bool 'showErrorText' will only be TRUE if 'Sign in' button is pressed and '_password' field is Empty
 7. Added 'errorText' property to 'Password' TextField, that will display error text if 'showErrorText' is TRUE otherwise null.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Added a new file (and class) for String validation 
+========================================================================================================================================================================
 ***string_validator.dart***
 1. Added a new 'EmailAndPasswordValidators' class defines 'emailValidator' and 'passwordValidator' variables.  
 
@@ -62,8 +86,11 @@ samples, guidance on mobile development, and a full API reference.
 1. MIXIN: 'EmailSignInForm' now Mixin with 'EmailAndPasswordValidators' class.
 2. Refactored 'submitEnabled' to use 'emailValidator' (for '_email') and 'passwordValidator' (for '_password')
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Enable 'Sign In' button only after validation
-##### email_sign_in_form.dart  
+========================================================================================================================================================================
+***email_sign_in_form.dart***  
 - Note:-
 - In order to reflect the Widget changes, rebuild the Widget Tree by calling the 'setState()'
 - 'onChanged' requires the input value parameter, but you can opt not to use/accept it in the called function.
@@ -74,12 +101,17 @@ samples, guidance on mobile development, and a full API reference.
 5. Added 'onChanged' property to 'Password' TextField that also calls the '_updateState()' method.
 
 
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Extracted methods for 'Email' and 'Password' TextFields 
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Extracted and replaced 'Email' TextField declaration to a new method i.e. '_buildEmailTextField()'
 2. Extracted and replaced 'Password' TextField declaration to a new method i.e. '_buildPasswordTextField()'
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Implementing 'FocusNode' 
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Added two new objects of 'FocusNode' class i.e. '_emailFocusNode' and '_passwordFocusNode'
 2. For Email TextField, Added 'focusNode' property and assigned '_emailFocusNode' as its value.
@@ -88,16 +120,25 @@ samples, guidance on mobile development, and a full API reference.
 5. For Email TextField, Added 'onEditingComplete' property and assigned '_emailEditingComplete' callback as its value.
 6. For Password TextField, Added 'onEditingComplete' property and assigned '_submit' callback as its value.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - TextField Refactoring
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Email TextField: Added 'autocorrect: false', 'TextInputType.emailAddress' and 'TextInputAction.next' properties.
 2. Password TextField: Added 'TextInputAction.done' property.
 
+
+************************************************************************************************************************************************************************
 ### 'Email Sign in' Form - Popped/Removed
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Popped/Removed the 'email_sign_in_form' upon the successful 'Sign in' or 'Create an account' operation.
 
+
+************************************************************************************************************************************************************************
 ### SignIn functionality (Support for 'SignInWithEmailAndPassword') - Continued
+========================================================================================================================================================================
 ***auth.dart***
 1. Added two new Abstract methods in 'AuthBase' class i.e. 'createUserWithEmailAndPassword' and 'signInWithEmailAndPassword'
 2. Overridden and implemented the above Abstract methods in the 'Auth' class which extends 'AuthBase' class.
@@ -119,7 +160,9 @@ Note: Since 'email_sign_in_form' requires 'auth' parameter, we have to pass it f
 1. Updated '_signInWithEmail' i.e. by passing 'auth' argument to the 'EmailSignInScreen' callback
 
 
+************************************************************************************************************************************************************************
 ### Designing 'Card' Widget - Introducing and implementing 'Enum'
+========================================================================================================================================================================
 ***email_sign_in_form.dart***
 1. Created an Enum i.e. 'EmailSignInFormType' with two values i.e. 'signIn' and 'register'
 2. Created a variable i.e. '_formType' of type 'EmailSignInFormType' and assigned it an initial value of 'EmailSignInFormType.signIn'.

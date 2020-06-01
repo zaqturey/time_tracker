@@ -33,8 +33,6 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   // Setting default value for '_isLoading' to disable 'Sign in' button while an 'auth' request is in progress
   bool _isLoading = false;
 
-
-
   void _toggleFormType() {
     setState(() {
       _isSubmitted = false;
@@ -59,8 +57,22 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       }
       Navigator.of(context).pop();
     } on Exception catch (e) {
-      print(e.toString());
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text('Sign in failed'),
+              content: Text(e.toString()),
+              actions: [
+                FlatButton(
+                  child: Text('Ok'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ],
+            );
+          });
     } finally {
+      // Below code will be executed in both cases i.e. When the request is a Success Or a Failure
       setState(() {
         _isLoading = false;
       });
@@ -115,16 +127,13 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   }
 
   List<Widget> _buildChildren() {
-    final primaryText = _formType == EmailSignInFormType.signIn
-        ? 'Sign In'
-        : 'Create an account';
-    final secondaryText = _formType == EmailSignInFormType.signIn
-        ? 'Need an account? Register'
-        : 'Have an account? Sign In';
+    final primaryText = _formType == EmailSignInFormType.signIn ? 'Sign In' : 'Create an account';
+    final secondaryText =
+        _formType == EmailSignInFormType.signIn ? 'Need an account? Register' : 'Have an account? Sign In';
 
-    bool submitEnabled = widget.emailValidator.isValid(_email)
-        && widget.passwordValidator.isValid(_password)
-        && !_isLoading;
+    // 'submitEnabled' shud only be enabled when '_email' and '_password' are valid and '_isLoading' is false.
+    bool submitEnabled =
+        widget.emailValidator.isValid(_email) && widget.passwordValidator.isValid(_password) && !_isLoading;
 
     return [
       _buildEmailTextField(),
@@ -138,6 +147,8 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       SizedBox(height: 10.0),
       FlatButton(
         child: Text(secondaryText),
+        // only execute '_toggleFormType' when '_isLoading' is false,
+        // otherwise disable the butting by provide 'null'
         onPressed: !_isLoading ? _toggleFormType : null,
       ),
     ];
