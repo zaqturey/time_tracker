@@ -1,0 +1,50 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:time_tracker_flutter_course/custom_widgets/platform_widget.dart';
+
+// ====----Implementing Platform Independent 'Alert Dialog'----====
+// Purpose of this Abstract class is: ->
+// To Build and Return a 'CupertinoAlertDialog' or an 'AlertDialog'
+// (depending on the request from 'PlatformWidget')
+
+class PlatformAlertDialog extends PlatformWidget {
+  PlatformAlertDialog({
+    @required this.title,
+    @required this.content,
+    @required this.defaultActionText,
+  })  : assert(title != null),
+        assert(content != null),
+        assert(defaultActionText != null);
+
+  final String title;
+  final String content;
+  final String defaultActionText;
+
+  @override
+  Widget buildCupertinoWidget(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        CupertinoDialogAction(
+          child: Text('Ok'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget buildMaterialWidget(BuildContext context) {
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        FlatButton(
+          child: Text('Ok'),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ],
+    );
+  }
+}

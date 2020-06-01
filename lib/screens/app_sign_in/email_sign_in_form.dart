@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/form_submit_button.dart';
+import 'package:time_tracker_flutter_course/custom_widgets/patform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 import 'package:time_tracker_flutter_course/utils/validators/string_validator.dart';
 
@@ -60,15 +61,10 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(
-              title: Text('Sign in failed'),
-              content: Text(e.toString()),
-              actions: [
-                FlatButton(
-                  child: Text('Ok'),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
+            return PlatformAlertDialog(
+              title: 'Sign in failed',
+              content: '${e.toString()}',
+              defaultActionText: 'Ok',
             );
           });
     } finally {

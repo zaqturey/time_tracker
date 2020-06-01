@@ -18,9 +18,24 @@ samples, guidance on mobile development, and a full API reference.
 ## Commits History
 
 ************************************************************************************************************************************************************************
+### Implemented Platform independent 'Alert Dialogs' 
+========================================================================================================================================================================
+***platform_widget.dart***
+1. 'PlatformWidget' -> Added this Abstract class to check the requesting Platform, and then build and return the requested Widgets
+2. Note: as this is an Abstract class, the extending classes will override the Functions specific to each Platform i.e. 'buildCupertinoWidget' and 'buildMaterialWidget'
+
+***platform_alert_dialog.dart***
+1. As this class extends 'PlatformWidget', it implements 'buildCupertinoWidget' to Build and Return a 'CupertinoAlertDialog' 
+2. Also, it implements 'buildMaterialWidget' to Build and Return an 'AlertDialog' 
+
+***email_sign_in_form.dart***
+1. '_submit()' -> Replaced the generic 'AlertDialog' with 'PlatformAlertDialog' (from 'platform_alert_dialog.dart') 
+
+
+************************************************************************************************************************************************************************
 ### Added 'showDialog' that returns an 'AlertDialog'
 ========================================================================================================================================================================
-***email_sign_in_screen.dart***
+***email_sign_in_form.dart***
 1. '_submit()' -> Exception block now displays a 'showDialog' that returns an 'AlertDialog'
 
 
