@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:time_tracker_flutter_course/custom_widgets/platform_alert_dialog_action.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_widget.dart';
 
 // ====----Implementing Platform Independent 'Alert Dialog'----====
@@ -13,6 +14,7 @@ class PlatformAlertDialog extends PlatformWidget {
   PlatformAlertDialog({
     @required this.title,
     @required this.content,
+    this.cancelActionText,
     @required this.defaultActionText,
   })  : assert(title != null),
         assert(content != null),
@@ -20,6 +22,7 @@ class PlatformAlertDialog extends PlatformWidget {
 
   final String title;
   final String content;
+  final String cancelActionText;
   final String defaultActionText;
 
   // below function can be called on the instance of the class, to display platform specific 'dialog'
@@ -35,12 +38,7 @@ class PlatformAlertDialog extends PlatformWidget {
     return CupertinoAlertDialog(
       title: Text(title),
       content: Text(content),
-      actions: [
-        CupertinoDialogAction(
-          child: Text('Ok'),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ],
+      actions: _buildActions(context),
     );
   }
 
@@ -49,12 +47,26 @@ class PlatformAlertDialog extends PlatformWidget {
     return AlertDialog(
       title: Text(title),
       content: Text(content),
-      actions: [
-        FlatButton(
-          child: Text('Ok'),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ],
+      actions: _buildActions(context),
     );
+  }
+
+  List<Widget> _buildActions(BuildContext context) {
+    final actions = <Widget>[];
+    if (cancelActionText != null) {
+      actions.add(
+        PlatformAlertDialogAction(
+          child: Text(cancelActionText),
+          onPressed: () => Navigator.of(context).pop(false),
+        ),
+      );
+    }
+    actions.add(
+      PlatformAlertDialogAction(
+        child: Text(defaultActionText),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+    );
+    return actions;
   }
 }

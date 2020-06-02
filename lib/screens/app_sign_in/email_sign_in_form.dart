@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/form_submit_button.dart';
-import 'package:time_tracker_flutter_course/custom_widgets/patform_alert_dialog.dart';
+import 'package:time_tracker_flutter_course/custom_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
 import 'package:time_tracker_flutter_course/utils/validators/string_validator.dart';
 

@@ -18,6 +18,18 @@ samples, guidance on mobile development, and a full API reference.
 ## Commits History
 
 ************************************************************************************************************************************************************************
+### Added support for 'cancelActionText' (added to class constructor as an optional parameter) and refactoring
+========================================================================================================================================================================
+***platform_alert_dialog.dart***
+1. cancelActionText -> added this final String variable to display the 'Cancel' text as 'dialog' Action (if passed)
+2. _buildActions(context) -> Added this new function that returns a List<Widget> of Platform specific Dialog Actions.
+3. Updated 'actions' property of 'buildCupertinoWidget' and 'buildMaterialWidget' to use '_buildActions(context)' as its value.
+
+***platform_alert_dialog_action.dart***
+1. PlatformAlertDialogAction -> This class accepts a 'Widget' and a 'VoidCallback', then build and return either a 'CupertinoDialogAction' or 'FlatButton'
+
+
+************************************************************************************************************************************************************************
 ### replaced Generic 'showDialog' with Platform specific 'Dialog'
 ========================================================================================================================================================================
 ***platform_alert_dialog.dart***
