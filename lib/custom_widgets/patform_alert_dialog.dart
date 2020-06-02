@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/custom_widgets/platform_widget.dart';
@@ -19,6 +21,14 @@ class PlatformAlertDialog extends PlatformWidget {
   final String title;
   final String content;
   final String defaultActionText;
+
+  // below function can be called on the instance of the class, to display platform specific 'dialog'
+  // Note: 'Dialog' is the parent window for 'AlertDialog' (you can instead display something else in a 'Dialog')
+  Future<bool> show(BuildContext context) async {
+    return Platform.isIOS
+        ? await showCupertinoDialog<bool>(context: context, builder: (context) => this)
+        : await showDialog<bool>(context: context, builder: (context) => this);
+  }
 
   @override
   Widget buildCupertinoWidget(BuildContext context) {

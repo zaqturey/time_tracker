@@ -18,6 +18,18 @@ samples, guidance on mobile development, and a full API reference.
 ## Commits History
 
 ************************************************************************************************************************************************************************
+### replaced Generic 'showDialog' with Platform specific 'Dialog'
+========================================================================================================================================================================
+***platform_alert_dialog.dart***
+1. Show -> Created this new async method that accepts the 'context' and returns the result from 'showCupertinoDialog<bool>' or 'showDialog<bool>' (depending on Platform) 
+2. Note: 'Dialog' is the parent window for 'AlertDialog' and 'showCupertinoDialog' or 'showDialog' Build and Return a Platform specific 'AlertDialog' 
+
+***email_sign_in_form.dart***
+1. '_submit()' -> 'PlatformAlertDialog' -> Updated 'Catch' i.e. removed 'showDialog()' and instead directly call 'PlatformAlertDialog'.
+2. '_submit()' -> 'show(context)' -> Calling 'show' on 'PlatformAlertDialog' inturn calls 'showDialog'/'showCupertinoDialog' from 'platform_alert_dialog.dart'
+
+
+************************************************************************************************************************************************************************
 ### Implemented Platform independent 'Alert Dialogs' 
 ========================================================================================================================================================================
 ***platform_widget.dart***

@@ -53,20 +53,16 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
       if (_formType == EmailSignInFormType.signIn) {
         await widget.auth.signInWithEmailAndPassword(_email, _password);
       } else {
-        // otherwise calling firebase 'createUserWithEmailAndPassword' method to Create a New Account
+        // Calling firebase 'createUserWithEmailAndPassword' method to Create a New Account
         await widget.auth.createUserWithEmailAndPassword(_email, _password);
       }
       Navigator.of(context).pop();
     } on Exception catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return PlatformAlertDialog(
-              title: 'Sign in failed',
-              content: '${e.toString()}',
-              defaultActionText: 'Ok',
-            );
-          });
+      PlatformAlertDialog(
+        title: 'Sign in failed',
+        content: e.toString(),
+        defaultActionText: 'Ok',
+      ).show(context);
     } finally {
       // Below code will be executed in both cases i.e. When the request is a Success Or a Failure
       setState(() {
