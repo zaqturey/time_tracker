@@ -18,6 +18,17 @@ samples, guidance on mobile development, and a full API reference.
 ## Commits History
 
 ************************************************************************************************************************************************************************
+### Added Sign-Out (logout) confirmation dialog i.e. an Alert Dialog (with 'Cancel' and 'Logout' Action)
+========================================================================================================================================================================
+***home_screen.dart***
+1. _confirmSingOut -> New method has been added to perform the following i.e.
+1.1. to Build and Display a 'PlatformAlertDialog' (with Alert Actions) 
+1.2. Get the BOOL response from the selected/pressed 'Alert Action' and then assign it to a final variable i.e. 'isSignOutRequested'
+1.3. Finally, call the '_signOut()' method if value for 'isSignOutRequested' is True.
+2. onPressed -> Updated the 'onPressed' with 'confirmSingOut(context)' callback instead of '_signOut'
+
+
+************************************************************************************************************************************************************************
 ### Added support for 'cancelActionText' (added to class constructor as an optional parameter) and refactoring
 ========================================================================================================================================================================
 ***platform_alert_dialog.dart***
