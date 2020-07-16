@@ -1,24 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-class User {
-  User({@required this.uid});
-  final String uid;
-}
-
-abstract class AuthBase {
-  Stream<User> get onAuthStateChanged;
-  Future<User> currentUser();
-  Future<User> signInAnonymously();
-  Future<User> createUserWithEmailAndPassword(String email, String password);
-  Future<User> signInWithEmailAndPassword(String email, String password);
-  Future<User> signInWithGoogle();
-  Future<User> signInWithFacebook();
-  Future<void> signOut();
-}
+import 'package:time_tracker_flutter_course/services/auth_base.dart';
+import 'package:time_tracker_flutter_course/services/user.dart';
 
 class Auth implements AuthBase {
   final _firebaseAuth = FirebaseAuth.instance;
@@ -41,24 +26,6 @@ class Auth implements AuthBase {
   Future<User> currentUser() async {
     final user = await _firebaseAuth.currentUser();
     return _userFromFirebase(user);
-  }
-
-  @override
-  Future<User> signInAnonymously() async {
-    final authResult = await _firebaseAuth.signInAnonymously();
-    return _userFromFirebase(authResult.user);
-  }
-
-  @override
-  Future<User> createUserWithEmailAndPassword(String email, String password) async {
-    final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-    return _userFromFirebase(authResult.user);
-  }
-
-  @override
-  Future<User> signInWithEmailAndPassword(String email, String password) async {
-    final authResult = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    return _userFromFirebase(authResult.user);
   }
 
   @override
@@ -107,6 +74,24 @@ class Auth implements AuthBase {
         message: 'Sign In Aborted By User',
       );
     }
+  }
+
+  @override
+  Future<User> createUserWithEmailAndPassword(String email, String password) async {
+    final authResult = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+    return _userFromFirebase(authResult.user);
+  }
+
+  @override
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    final authResult = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    return _userFromFirebase(authResult.user);
+  }
+
+  @override
+  Future<User> signInAnonymously() async {
+    final authResult = await _firebaseAuth.signInAnonymously();
+    return _userFromFirebase(authResult.user);
   }
 
   @override

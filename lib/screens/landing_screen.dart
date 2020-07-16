@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/screens/app_sign_in/sign_in_screen.dart';
 import 'package:time_tracker_flutter_course/screens/home_screen.dart';
-import 'package:time_tracker_flutter_course/services/auth.dart';
+import 'package:time_tracker_flutter_course/services/auth_provider.dart';
+import 'package:time_tracker_flutter_course/services/user.dart';
 
 class LandingScreen extends StatelessWidget {
-  LandingScreen({@required this.auth});
-  final AuthBase auth;
-
   @override
   Widget build(BuildContext context) {
+    final auth = AuthProvider.of(context);
     return StreamBuilder(
       stream: auth.onAuthStateChanged,
       builder: (context, snapshot) {
@@ -16,9 +15,9 @@ class LandingScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           User user = snapshot.data;
           if (user == null) {
-            return SignInScreen(auth: auth);
+            return SignInScreen();
           }
-          return HomeScreen(auth: auth);
+          return HomeScreen();
         } else {
           return Scaffold(
             body: Center(child: CircularProgressIndicator()),
